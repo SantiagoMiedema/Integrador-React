@@ -7,21 +7,14 @@ import { selectCategory } from '../../redux/categories/CategoriesSlice';
 
 const Products = () => {
   const { categories } = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.products.products); 
-
+  const allProducts = useSelector((state) => state.products.products);
   const { selectedCategory } = useSelector((state) => state.categories);
-
   const dispatch = useDispatch();
 
-  const [productList, setProductList] = useState([]);
-
-  useEffect(() => {
-    const resultado = productList.filter((product) => { 
-      return product.category === selectedCategory;
-    });
-
-    setProductList(resultado);
-  }, [selectedCategory, products]); 
+  
+  const filteredProducts = allProducts.filter((product) => {
+    return selectedCategory ? product.category === selectedCategory : true;
+  });
 
   return (
     <>
@@ -42,7 +35,7 @@ const Products = () => {
           })}
         </CategoriesContainerStyled>
         <CardsContainerStyled>
-          {productList.map((product) => {
+          {filteredProducts.map((product) => {
             const { id, name, price, src } = product;
             return (
               <Card key={id}>
