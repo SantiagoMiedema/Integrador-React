@@ -1,20 +1,23 @@
-import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import categoriesReducer from "./categories/CategoriesSlice";
+import categoriesReducer from "./categories/CategoriesSlice.js";
 import productsReducer from "./products/productsSlice"
 import recommendedReducer from "./recommended/recommendedSlice"
+import cartReducer from "./cart/cartSlice.js"
 
 const reducers = combineReducers({
   categories: categoriesReducer,
   products: productsReducer,
-  recommended: recommendedReducer
+  recommended: recommendedReducer,
+  cart: cartReducer
 });
+
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: [] 
+  whitelist: ["cart"] 
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -25,5 +28,8 @@ export const store = configureStore({
     serializableCheck: false
   })
 });
+
+
+
 
 export const persistor = persistStore(store);

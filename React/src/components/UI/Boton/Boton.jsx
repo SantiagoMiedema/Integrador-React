@@ -1,9 +1,17 @@
 import React from 'react'
 import { BotonStyled } from './BotonStyled'
 
-const Boton = ({children}) => {
+const Boton = ({
+  children,
+  disabled = false,
+  onClick = (e) => e.preventDefault(),
+}) => {
   return (
-    <BotonStyled>{children}</BotonStyled>
+    <BotonStyled
+      disabled={disabled}
+      onClick={onClick}
+      whileHover={{scale: 1.05}}
+    >{children}</BotonStyled>
   )
 }
 

@@ -1,7 +1,13 @@
 import styled from "styled-components";
-import { motion } from 'framer-motion';
 
-export const BotonStyled = styled(motion.button)`  
+export const CategoriesContainerStyled = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+`
+export const BotonCategoria = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,14 +26,4 @@ export const BotonStyled = styled(motion.button)`
     font-weight: 600;
     cursor: pointer;
     width: auto;
-
-    &:hover {
-    background-color: #4D77D8;
-    transition: 500ms;
-  }
-
-    &:disabled {
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
 `
